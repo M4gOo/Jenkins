@@ -7,3 +7,17 @@ Good files to back up:
 $JENKINS_HOME > config.xml  -> all configuration for Jenkins
               > jobs  -> all your CI/CDpipelines
 
+There is not a specific solution to use - https://www.jenkins.io/doc/book/system-administration/backing-up/
+  filesystem snapshots -> not a real backup, no recomment for long-term, better for daily
+  plugins              -> it is a little bit more managed than one script -> ThinBackup (recommended)
+  shell script         -> https://github.com/sue445/jenkins-backup-script
+  
+  
+  Monitoring
+  https://www.jenkins.io/doc/book/system-administration/monitoring/
+  Recommended - Prometheus and Grafana
+  prometheus plugin exposed on by default an endpoint /prometheus
+    Ex.:http://localhost:8080/prometheus/
+  
+
+
