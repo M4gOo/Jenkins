@@ -1,0 +1,16 @@
+
+Plugins allow you to connect to other services
+Ex.: connect to Azure from Jenkins you need Azure Plugin 
+
+Jenkins UI > manage Jenkins >plugin Manager
+
+Installing plugin after Jenkins deployed
+-plugins index - https://plugins.jenkins.io/
+some plugins might you restart jenkins instance  - sudo systemctl restart jenkins
+
+builds are just thing thats running you CI/CD pipeline and your build process
+
+to limit access to the user need to install plugin -> role-based authorization strategy (plugin)
+after install this pulgin you can create role, give permissions and etc -> https://plugins.jenkins.io/role-strategy/
+
+
