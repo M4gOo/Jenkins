@@ -1,0 +1,9 @@
+
+Always need to think about backing up the jenkins server and some specific files/folders, restore policy, monitor the system, a system is only 
+as good as how it can scale (example 2 jenkins servers and need to increase to 3).
+
+backups -> avaible in full files/dir, snapshots
+Good files to back up:
+$JENKINS_HOME > config.xml  -> all configuration for Jenkins
+              > jobs  -> all your CI/CDpipelines
+
