@@ -1,0 +1,29 @@
+CI/CD - is a way  to take the code, package and deploy it to a system (container, serveless, cloud, bare metal ...)
+
+CI - take the code and package it up
+   - inside of your CI process it does a clone of the code in the GitHub repository and package
+next step - test your code (unit tests, integration tests), to make sure that code is ready to go before to deploy, here you can make sure all the dependencies are in, then run security checks against the code
+
+CD - here is where you deploy the codde to some system
+   CDelivery - when passed in CI and is ready to deploy, then go jenkins and click the button to deploy the code
+   CDeployment - the code gets automatically deployed after the CI process, when pushed to GitHub the CI process would automatically start, once the code builds the CD process would automatically run and it would be deployed to again your container, VM, serveless...
+   
+Why use Jenkins  -  open-source, ton plugins, free
+
+https://www.jenkins.io/
+
+installation Jenkins on Ubuntu - https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
+
+start jenkins - open firewall, so can interact with jenkins from the UI-> sudo ufw allow 8080
+change the port on Jenkins -> /lib/systemd/system/jenkins.service ; Environment="JENKINS_PORT=8080"
+
+
+
+======================== CLI =============================
+To work with CLI - https://www.jenkins.io/doc/book/managing/cli/
+On Jenkins UI -> dashoboard/manage/cli and follow the instructions ; to authenticate go jenkinsUI>user_name(top-right)>configure>APItoken
+java -jar jenkins-cli.jar [-s JENKINS_URL] -auth kohsuke:abc1234ffe4a command ...
+      kohsuke - username
+      abc12... - token
+      
+
