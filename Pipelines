@@ -6,3 +6,70 @@ So you need to fix to go further in a multi-stage single jenkinsfile.
 
 To create a jenkinsfile.
 VSCode write Jenkinfile 
+
+===================== Sample Pipeline ============================
+
+
+set up waht a pipeline typically looks like
+In the Jenkins UI > + New item
+SCM (Source Code Management - is used to track modifications to a source code repository)
+
+Choose pipeline and press Ok
+Discar old builds - it is not necessary to hold if you really need, usually keep for a few weeks
+Do not allow concurrent builds - build wouldn't be able to run at the same time, usually your team are using, so you want to be able to build multiple times
+Do not allow the pipeline to resume if the controller restarts - if the controller (Jenkins server) restarts, this is saying dont resume the pipelines that was running while the restart occurred
+GitHub project - it allows you to puty in the project url
+This project is parameterised - allow you to prompt users for one or more inputs. If you have to pass in a variable  this is a good way to do that
+Throttle builds - this is good if you have slow systems, or you are working on scaling out. It just slows down the workload, it will allows concurrent builds
+
+in Pipeline Script choose Hello World (in the drop box)
+and Save
+
+Select Build Now
+To change go to Configure, do the changes, Save and then Build Now
+
+==================== Build a CI Pipeline ===========================
+
+Ex.:
+
+- First install the plug in necessary in Jenkins
+ Manage Jenkins > Plugin Manager > Install Go 
+Restart Jenkins
+
+- Configure the pipeline 
+GO111MODULE - means you can install the latest version of some code base from GitHub for example.
+sh 'go test ./...' - means it looks at the current directory and all subdirectories and runs every test that's available
+pipeline {
+    agent any
+    tools {
+        go 'go-1.19'
+    }
+
+    environment {
+        GO111MODULE='on'
+    }
+
+    stages {
+        stage('Test') {
+            steps {
+                // Get soe code from a GitHub repository
+                git 'https://github.com/ybkuroki/go-webapp-sample'
+                sh 'go test ./...'
+            }
+        }
+    }
+}
+
+- Create Jenkin pipeline
+create new item and paste the code above in Pipeline description
+
+- Global configuration (Troubleshooting)
+https://plugins.jenkins.io/golang/
+important to add the go-1.19 in the global conf, just follow the link above.
+the version it this repo is important to match, building in Jenkins gave me a error because I did go-1.17 and I had to update  to 1.19. 
+This change had to be in global configuration and also the pipeline script.
+
+
+
+
+
