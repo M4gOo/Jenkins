@@ -19,5 +19,14 @@ There is not a specific solution to use - https://www.jenkins.io/doc/book/system
   prometheus plugin exposed on by default an endpoint /prometheus
     Ex.:http://localhost:8080/prometheus/
   
-
-
+Then go to Prometheus (nned to install first)
+  Status>Targets
+    you will see labels like jobs='prometheus',instance=localhost
+      But how to target Jenkins 
+        SSH into Prometheus server and sudo vi /etc/prometheus/prometheus.yml
+          Under scrape_configs and add new job
+              -job_name: 'Jenkins'
+               metrics_path: '/prometheus'
+               static_configs:
+               - targets: ['IP:8080']
+Then systemctl restart prometheus
