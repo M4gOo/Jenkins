@@ -1,0 +1,8 @@
+
+Jenkins file - contains definitions (template, instructions). Tell a pipeline what it should be doing and what services and plugins
+it should be interacting with
+Multi-Stage Pipelines - we can put all deploys in a single file or separate. I the first stage fails, it will come back and no move forward.
+So you need to fix to go further in a multi-stage single jenkinsfile.
+
+To create a jenkinsfile.
+VSCode write Jenkinfile 
