@@ -62,14 +62,71 @@ pipeline {
 
 - Create Jenkin pipeline
 create new item and paste the code above in Pipeline description
+save
 
 - Global configuration (Troubleshooting)
 https://plugins.jenkins.io/golang/
 important to add the go-1.19 in the global conf, just follow the link above.
+
+
+-Build Now
+any change or troubleshooting click on -> configure button 
 the version it this repo is important to match, building in Jenkins gave me a error because I did go-1.17 and I had to update  to 1.19. 
 This change had to be in global configuration and also the pipeline script.
+I had to install gcc on Jenkins server as well
+
+========================== CI/CD =====================
+
+Bring down from the github like we did above
+Create a Docker image - need to create in pipeline script
 
 
+- Manage Jenkins > Manage Plugins
+need to dowloand Docker plugins and also install Docker on Jenkins server
 
+
+- Configure the pipeline 
+
+pipeline {
+    agent any
+    tools {
+        go 'go-1.19'
+    }
+
+    environment {
+        GO111MODULE='on'
+    }
+
+    stages {
+        stage('Development') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/kodekloudhub/go-webapp-sample.git'
+                sh 'go test ./...'
+            }
+        }
+    
+    
+        stage('Building our image') {
+            steps {
+                script {
+                    app = docker.build("ybkuroki/go-webapp-sample")
+                }    
+               
+            }
+        }
+    }
+
+}
+
+
+### app = docker.build (this command you get from Docker plugin)
+
+
+- Create Jenkin pipeline
+create new item and paste the code above in Pipeline description
+
+-Build Now
+any change or troubleshooting click on -> configure button 
 
 
