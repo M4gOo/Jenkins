@@ -66,7 +66,7 @@ save
 
 - Global configuration (Troubleshooting)
 https://plugins.jenkins.io/golang/
-important to add the go-1.19 in the global conf, just follow the link above.
+important to add the go-1.19 in the global conf, just follow the link above. Otherwise it will give an error
 
 
 -Build Now
@@ -75,7 +75,7 @@ the version it this repo is important to match, building in Jenkins gave me a er
 This change had to be in global configuration and also the pipeline script.
 I had to install gcc on Jenkins server as well
 
-========================== CI/CD =====================
+========================== CD =====================
 
 Bring down from the github like we did above
 Create a Docker image - need to create in pipeline script
@@ -129,4 +129,11 @@ create new item and paste the code above in Pipeline description
 -Build Now
 any change or troubleshooting click on -> configure button 
 
+- (Troubleshooting)
+dial unix /var/run/docker.sock: connect: permission denied
+   sudo usermod -a -G docker jenkins   
+       then I had to restart
 
+
+========================== CI / CD =====================
+Lets see what it looks like to fully run the code!
