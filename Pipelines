@@ -137,3 +137,44 @@ dial unix /var/run/docker.sock: connect: permission denied
 
 ========================== CI / CD =====================
 Lets see what it looks like to fully run the code!
+By default, all pipelines are under this directory -> /var/lib/jenkins/workspace/<name-of-the-pipeline-created-in-Jenkins>
+
+
+Lets focus on Run stage
+
+pipeline {
+    agent any
+    tools {
+        go 'go-1.19'
+    }
+
+    environment {
+        GO111MODULE='on'
+    }
+
+    stages {
+        stage('Test') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/ybkuroki/go-webapp-sample.git'
+                sh 'go test ./...'
+            }
+        }
+        stage('Build') {
+            steps {
+                git 'https://github.com/ybkuroki/go-webapp-sample.git'
+                sh 'go build .'
+                }    
+        }
+        stage('Run'){
+            steps {
+                sh 'cd /var/lib/jenkins/workspace/go-full-pipeline && go-webapp-sample &'
+            }
+        }
+    }
+
+}
+
+
+
+
