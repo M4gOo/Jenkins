@@ -30,3 +30,50 @@ Idea is taking the old UI and making it new and improved
   if you select github, it will create a jenkinsfile for you in the repo you selected.
   
   
+====================== Securing Jenkins ===============================================
+
+User and access control 
+      - Authentication (proof who you are)
+              - Security Realm ( indicates who can access the Jenkins environment) , known as "authentication"
+                  - Identity
+                  - Membership
+      - Authorization (permission to do something)
+ 
+ Commmon Jenkins Security Mistake
+ - anyone (even anonymous) can do anything
+ 
+ 
+ ================= Managing and enabling security ============================================
+ Dashoboard > Manage Jenkins > manage plugins > search for security  - there has some options you can implement from plugins perspective.
+ extend some Authorization capabilities of Jenkins to support even more authorization schemes.
+ Can be achieve installing Role-based Authorization plugin.
+ For security Jenkins recommend some plugins
+ 
+ Dashoboard > Manage Jenkins > Configure Global Security
+ 
+ 
+ Distributed builds - enable for protect Jenkins controller from maalicious build scripts
+                    - builds should be executed on agent nodes and not in jenkins controller
+  prevent builds from running on the Built-In Node
+                    - Manage Jenkins > Manage Nodes and Clouds > Executors 0 for the Built-In Node
+                    
+  Access Control for Builds
+            - look for pipeline security, there are a lot options
+            
+ Security Pipeline Matrix 
+  Dashoboard > Manage Jenkins > Configure Global Security > under Authorization has the option Matrix-based security 
+  then you can give different permissions for all users and groups
+  
+  There is another options which is per project which control based on a specific project
+ 
+           
+                  
+                    
+ 
+
+ 
+ 
+ 
+ 
+ 
+
