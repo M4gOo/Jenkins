@@ -1,0 +1,32 @@
+
+Blue Ocean is not giving anything new from a functionality, better usability perspective, more straightforward
+Idea is taking the old UI and making it new and improved 
+  easier  to use
+  better visualizations
+  fast and intuitive pipeline status
+  better pipeline editor
+  personalization
+  pinpoint precision - shows where in the pipeline intervention is needed
+  integration for branch and pull requests
+  
+  
+  ==================== Installing Blue Ocean ========================
+  Not installed by default, can be install with a plugin
+  It is part of the Jenkins
+  
+  - Jenkins dashboard > manage Jenkins > manage plugins > blue ocean
+  
+  To use BlueOcean
+  http://localhost:8080/blue
+  OR
+  Jenkins UI > Open Blue Ocean on the left in Dashboard
+  
+  
+  ======================= Creating a pipeline using Blue Ocean ===========================
+  Create new pipeline > choose whatever you want (Ex.: Github) > choose your repository > give a name 
+  Next step you dont need manually set up these Jenkinsfiles you can use the UI to do this
+  Save
+  
+  if you select github, it will create a jenkinsfile for you in the repo you selected.
+  
+  
