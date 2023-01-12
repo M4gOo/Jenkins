@@ -1,0 +1,60 @@
+
+the CI/CD pipeline runs via these build agents
+Agents are systems the run the processes all the way throughout the pipeline
+You have a task on your pipeline and that task says "go do this thing for me:, the build agents execute said thing.
+Task executor (what are build agents) - is any system (raspberryPi, windows, linux, macos, docker, ...). Can have build agents that are 
+running as Docker containers. For pre requisite the system must run Java
+
+You can run Jenkin's workiload right from the Jenkins server, but it is not really recommended for security purposes, for performance concerns.
+
+
+
+==================== Using an Ubuntu Server as a Build Agent ==================
+Can use the same installation process when you install Jenkins
+
+Add new brand new Jenkins agent
+  - add new user on Jenkins server
+    - sudo adduser <newuser>
+    - sudo usermod -aG sudo <newuser>   (add user to the sudo/root group)
+    - groups <newuser>  (check if the new user is inside the sudo group)
+  - Jenkins dashboard  
+      Dashboard > Manage Jenkins > Credentials > System > Global credentials (unrestricted)
+      username - newuser
+  - Jenkins dashboard
+      Dashboard > Manage Jenkins > Nodes
+      new node - put any name you want (Ex.: ubuntuagent)
+      thick the box Permanent Agent - this is going to add this agent and give the ability to run any job that we want
+  
+  - Jenkins dashboard - create new item
+      new item > freestyle project > ok
+        thick the box Restrict where this project can be run 
+            Label Expression - put the build agent name. Jenkins it will let you know if matches giving an output "label xxx matches 1 node"
+        Build > execute shell > echo 'testing build agent'    
+        Save > Build now
+        
+    
+    ====================  Using Container Build Agents ===========================
+    
+Need to specify the agent (docker image) - >  docker { image 'golang:latest' }
+
+pipeline {
+    agent {
+        docker { image 'golang:latest' }
+    }
+    
+    stages {
+        stage('Development') {
+            steps {
+                git 'https://github.com/ybkuroki/go-webapp-sample.git'
+                sh 'go version'
+            }
+             
+        }
+    }
+
+}
+
+ - Jenkins dashboard - create new item
+      new item > pipeline > ok
+      add the script above into the pipeline script > save > build now
+   
