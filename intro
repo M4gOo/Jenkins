@@ -12,6 +12,8 @@ Why use Jenkins  -  open-source, ton plugins, free
 
 https://www.jenkins.io/
 
+BEFORE the installation, make sure java is installed.
+
 installation Jenkins on Ubuntu - https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 
 start jenkins - open firewall, so can interact with jenkins from the UI-> sudo ufw allow 8080
